@@ -1,4 +1,12 @@
-﻿## v0.7（2026-08-07）新增 VS Code 挂载机制
+﻿## v0.8（2026-08-07）AI 引导机制（AGENTS.md 入口 + 引导三件事）
+
+- 新增 `_workspace/AGENTS.md`（sync: manual）：治理仓库自身入口，链回 `00-总入口.md`，保证从 `_workspace` 及其子目录启动也有引导（git 根边界内自动加载）。
+- `_workspace/00-总入口.md` 增加「AI 引导机制」小节：AGENTS.md 发现规则（git 根向下 / 非 git 只查当前目录）+ 新目录引导三件事。
+- `_workspace/01-目录索引.md`：`_workspace` 行入口改为 `AGENTS.md`（→ `00-总入口.md`）；登记约定补充 AI 引导三件事与「挂载≠引导」注意。
+- `_workspace/07-VSCode工作区挂载登记.md` 增加「挂载 ≠ AI 引导」说明；根 AGENTS.md 增加引导边界说明。
+- 全部模板文件 front-matter 统一升至 v0.8（含 README / 模板-folder-AGENTS.md）。
+
+## v0.7（2026-08-07）新增 VS Code 挂载机制
 
 - 新增 `_workspace/07-VSCode工作区挂载登记.md`（sync: manual）：挂载登记表 = `.code-workspace` folders 唯一真相，预填 5 个骨架目录，新实例首跑即「已是最新」。
 - 新增 `04-工具/sync-vscode-workspace.ps1`：`$PSScriptRoot` 推导式默认路径（登记表通配兼容实例 06 / 模板 07），幂等同步、`-DryRun`、settings 保留。

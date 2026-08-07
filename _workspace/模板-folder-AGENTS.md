@@ -1,4 +1,4 @@
-﻿<!-- 模板 v0.5 | sync: manual | target: <实例各目录>/AGENTS.md -->
+﻿<!-- 模板 v0.8 | sync: manual | target: <实例各目录>/AGENTS.md -->
 # AI Agent 入口（<目录名>）
 
 进入本目录后，先读取并遵守：

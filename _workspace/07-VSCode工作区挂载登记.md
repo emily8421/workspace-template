@@ -1,4 +1,4 @@
-﻿<!-- 模板 v0.7 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
+﻿<!-- 模板 v0.8 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
 # VS Code 工作区挂载登记（模板）
 
 - 性质：`.code-workspace` 挂载项的**唯一真相**。由 `04-工具\sync-vscode-workspace.ps1` 读取并同步到 `.code-workspace` 的 `folders` 段。
@@ -42,3 +42,7 @@
 ```
 
 > 同步后 VS Code 会提示「工作区已更改，重新加载」。无变化时脚本不写文件。
+
+## 注意：挂载 ≠ AI 引导
+
+把目录加进 `.code-workspace` 只影响 VS Code 显示与挂载边界，不会让 AI CLI 自动读取治理规则。AI 引导靠各目录自身的 `AGENTS.md` 链回 `_workspace\00-总入口.md`；新目录引导三件事见 `01-目录索引.md` 登记约定。
