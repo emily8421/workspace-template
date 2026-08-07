@@ -1,8 +1,8 @@
-﻿<!-- 模板 v0.8 | sync: manual | target: <实例根>/README.md -->
+﻿<!-- 模板 v0.9 | sync: manual | target: <实例根>/README.md -->
 # <工作区名> · 工作区总览
 
 > 本文件是工作区**人类入口**：了解这个空间有哪些目录、各自装什么、怎么用。
-> AI 入口见 `AGENTS.md`（先读 `_workspace/00-总入口.md`）。
+> AI 入口见 `AGENTS.md`（Codex）/ `CLAUDE.md`（Claude），均指向 `_workspace/00-总入口.md`。
 
 ## 这个工作区解决什么问题
 
@@ -19,7 +19,7 @@
 ## 怎么用
 
 - 人看：按目录地图进入对应目录 README。
-- AI：任意目录进入后自动读 AGENTS.md → `_workspace/00-总入口.md`。
+- AI：Codex 任意目录进入后自动读 AGENTS.md → `_workspace/00-总入口.md`；Claude Code 读 CLAUDE.md（根 `CLAUDE.md` / `_workspace/CLAUDE.md` 桥接同一入口）。
 - 新会话：先看 `_workspace/_handoff/README.md` 是否有未完成任务续接。
 
 ## 硬约束（摘要）

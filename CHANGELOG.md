@@ -1,4 +1,12 @@
-﻿## v0.8（2026-08-07）AI 引导机制（AGENTS.md 入口 + 引导三件事）
+﻿## v0.9（2026-08-07）Claude Code 桥接（CLAUDE.md 入口）
+
+- 新增根 `CLAUDE.md`（sync: manual）：Claude Code 专属入口（不读 AGENTS.md），实例根 `@` 导入 `_workspace\00-总入口.md`（实例化时替换为绝对路径）；Claude 从实例任意子目录启动都能被引导。
+- 新增 `_workspace/CLAUDE.md`（sync: manual）：治理仓内 Claude 桥接，`@AGENTS.md` 链回治理入口。
+- `_workspace/00-总入口.md` AI 引导机制小节补充 Claude Code 发现规则（向上逐层查 CLAUDE.md、跨 git 边界、@导入桥接）；新目录引导三件事并入 Claude 侧要求。
+- `_workspace/01-目录索引.md` 登记约定补充「Claude 侧同目录需配 CLAUDE.md 桥接」；`07-VSCode工作区挂载登记.md` 挂载≠引导说明补 Claude 相关。
+- 根 AGENTS.md / README.md / 模板-folder-AGENTS.md / 模板说明.md front-matter 升 v0.9。
+
+## v0.8（2026-08-07）AI 引导机制（AGENTS.md 入口 + 引导三件事）
 
 - 新增 `_workspace/AGENTS.md`（sync: manual）：治理仓库自身入口，链回 `00-总入口.md`，保证从 `_workspace` 及其子目录启动也有引导（git 根边界内自动加载）。
 - `_workspace/00-总入口.md` 增加「AI 引导机制」小节：AGENTS.md 发现规则（git 根向下 / 非 git 只查当前目录）+ 新目录引导三件事。
