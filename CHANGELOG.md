@@ -3,6 +3,7 @@
 - 新增 `_workspace/07-VSCode工作区挂载登记.md`（sync: manual）：挂载登记表 = `.code-workspace` folders 唯一真相，预填 5 个骨架目录，新实例首跑即「已是最新」。
 - 新增 `04-工具/sync-vscode-workspace.ps1`：`$PSScriptRoot` 推导式默认路径（登记表通配兼容实例 06 / 模板 07），幂等同步、`-DryRun`、settings 保留。
 - `04-工具/README.md` 增加「VS Code 工作区挂载同步」小节；模板说明升 v0.7。
+- 模板 `_workspace/00-总入口.md` 增加「VS Code 工作区挂载」小节（登记 07 机制）。
 
 ## v0.6（2026-08-07）恢复复制即用布局
 
