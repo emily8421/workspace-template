@@ -1,4 +1,10 @@
-﻿## v0.6（2026-08-07）恢复复制即用布局
+﻿## v0.7（2026-08-07）新增 VS Code 挂载机制
+
+- 新增 `_workspace/07-VSCode工作区挂载登记.md`（sync: manual）：挂载登记表 = `.code-workspace` folders 唯一真相，预填 5 个骨架目录，新实例首跑即「已是最新」。
+- 新增 `04-工具/sync-vscode-workspace.ps1`：`$PSScriptRoot` 推导式默认路径（登记表通配兼容实例 06 / 模板 07），幂等同步、`-DryRun`、settings 保留。
+- `04-工具/README.md` 增加「VS Code 工作区挂载同步」小节；模板说明升 v0.7。
+
+## v0.6（2026-08-07）恢复复制即用布局
 
 - 结构回退：模板包顶层 = 实例骨架（README / AGENTS / _workspace / 01-文档 / 02-数据 / 03-知识输入 / 04-工具 / code-workspace），复制或克隆后改名即可用。
 - 新增 create-instance.ps1：一条命令生成新实例骨架。
