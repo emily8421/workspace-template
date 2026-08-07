@@ -1,0 +1,35 @@
+﻿# 模板 v0.5 | sync: manual | target: _workspace/.gitignore
+# 保护目录与原始数据（按工作区实际情况增删）
+00-共享基础/
+*原始采集*/
+*.zip
+*.rar
+
+# 凭据
+*.token
+*.secret
+*.key
+*.pem
+.env
+.env.*
+*.log
+
+# 编辑器/OS 状态
+.agents/
+.claude/
+.cursor/
+.obsidian/
+.trae/
+.history/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# 构建产物与依赖
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+*.mpkg

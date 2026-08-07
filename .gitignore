@@ -1,0 +1,19 @@
+﻿# 编辑器/OS 状态
+.agents/
+.claude/
+.cursor/
+.obsidian/
+.trae/
+.history/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# 凭据（防御性）
+*.token
+*.secret
+*.key
+*.pem
+.env
+.env.*

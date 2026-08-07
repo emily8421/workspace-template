@@ -1,0 +1,24 @@
+﻿// 模板 v0.5 | sync: manual | target: <实例根>/<实例名>.code-workspace
+{
+	// 工作区模板：多目录工作区 VS Code 打开入口（v0.3 实例目录聚合）
+	// 用法：复制到 <工作区实例目录>/<工作区实例名>.code-workspace
+	// 路径说明：folders.path 相对本文件所在目录；实例内目录直接写名，外部目录用 ../ 或绝对路径
+	// AI 入口仍以 AGENTS.md → _workspace/00-总入口.md 为准；本文件仅供 VS Code 打开使用
+	"folders": [
+		{
+			"name": "<实例内目录>",
+			"path": "<实例内目录>"
+		},
+		{
+			"name": "<外部目录>",
+			"path": "../<外部目录>"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/node_modules": true,
+			"**/__pycache__": true
+		}
+	}
+}
