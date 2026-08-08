@@ -1,5 +1,7 @@
-﻿<!-- 模板 v0.5 | sync: manual | target: _workspace/_handoff/README.md -->
+﻿<!-- 模板 v1.0 | sync: manual | target: _workspace/_handoff/README.md -->
 # _handoff 索引
+
+> **当前主线 / 下一任务**：<进行中任务；无则写「无」>（A4 主线程指针，见 `04-会话续接.md`）
 
 | 日期 | 任务 | 目录 | 状态 | 路径 |
 |---|---|---|---|---|

@@ -1,4 +1,4 @@
-﻿# 模板 v0.5 | sync: manual | target: _workspace/.gitignore
+﻿# 模板 v1.0 | sync: manual | target: _workspace/.gitignore
 # 保护目录与原始数据（按工作区实际情况增删）
 00-共享基础/
 *原始采集*/

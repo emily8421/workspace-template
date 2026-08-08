@@ -1,4 +1,4 @@
-﻿<!-- 模板 v0.7 | sync: manual | target: <实例>/04-工具/README.md -->
+﻿<!-- 模板 v1.0 | sync: manual | target: <实例>/04-工具/README.md -->
 # 04-工具（脚本与使用文档）
 
 存放可运行的维护/自动化脚本及使用说明（ps1/py/sql 等）。

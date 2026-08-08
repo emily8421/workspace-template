@@ -1,4 +1,4 @@
-﻿<!-- 模板 v0.9 | sync: manual | target: <实例根>/CLAUDE.md -->
+﻿<!-- 模板 v1.0 | sync: manual | target: <实例根>/CLAUDE.md -->
 # AI Agent 入口（Claude Code · 实例根）
 
 Claude Code 的规则入口与 Codex 不同：Codex 读 `AGENTS.md`（见同目录同名文件），Claude Code 读 `CLAUDE.md`（不读 AGENTS.md），从启动目录向上逐层查找、跨 git 边界、项目根优先于上层。实例根放本文件后，从本工作区任意子目录启动 Claude 都会被引导。
