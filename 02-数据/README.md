@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: <实例>/02-数据/README.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: <实例>/02-数据/README.md -->
 # 02-数据（数据源登记 · 不直接存放数据本体）
 
 > **可选区**：默认不建，`create-instance.ps1` 加 `-IncludeOptionalZones` 或按需自行创建。

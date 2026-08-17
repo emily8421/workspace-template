@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: <实例根>/README.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: <实例根>/README.md -->
 # <工作区名> · 工作区总览
 
 > 本文件是工作区**人类入口**：了解这个空间有哪些目录、各自装什么、怎么用。

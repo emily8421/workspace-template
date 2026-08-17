@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: <实例>_workspace/AGENTS.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: <实例>_workspace/AGENTS.md -->
 # AI Agent 入口（_workspace · 治理）
 
 从本目录或本目录任意子目录启动 AI 后，先读取并遵守：

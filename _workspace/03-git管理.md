@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: _workspace/03-git管理.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: _workspace/03-git管理.md -->
 # Git 管理机制
 
 ## 仓库拓扑（落地时二选一）

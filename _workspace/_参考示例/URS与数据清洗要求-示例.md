@@ -1,4 +1,4 @@
-<!-- 模板 v1.0 | sync: manual | target: <实例>/_workspace/_参考示例/URS与数据清洗要求-示例.md -->
+<!-- 模板 v1.1 | sync: manual | target: <实例>/_workspace/_参考示例/URS与数据清洗要求-示例.md -->
 # URS 与数据清洗要求（示例）
 
 > **性质**：实例业务产物示例（来源 miiot_plugin_develop_system：`10-用户需求说明书.md`、`11-数据提供与清洗要求.md`）。**带业务字段的具体形态**，与空表单 `../_表单/_模板-需求文档雏形.md` 对照使用。

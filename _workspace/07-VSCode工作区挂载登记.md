@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
 # VS Code 工作区挂载登记（模板）
 
 - 性质：`.code-workspace` 挂载项的**唯一真相**。由 `04-工具\sync-vscode-workspace.ps1` 读取并同步到 `.code-workspace` 的 `folders` 段。
@@ -46,3 +46,13 @@
 ## 注意：挂载 ≠ AI 引导
 
 把目录加进 `.code-workspace` 只影响 VS Code 显示与挂载边界，不会让 AI CLI 自动读取治理规则。AI 引导靠各目录自身的 `AGENTS.md`（Codex）/ `CLAUDE.md`（Claude，不读 AGENTS.md）链回 `_workspace\00-总入口.md`；新目录引导三件事见 `01-目录索引.md` 登记约定。
+
+## settings 基线（版本化记录）
+
+`.code-workspace` 位于实例根；拓扑 A 下实例根非 git 仓，`settings` 段无人版本管理，易漂移丢失。本节做版本化记录，约定：**手改 `.code-workspace` 的 `settings` 段时，同步在本表加一行**（`folders` 段由挂载登记 + 同步脚本维护，不在本节记录）。
+
+| 日期 | settings 摘要 | 说明 |
+|---|---|---|
+| <YYYY-MM-DD> | <改了哪些键，如 `files.exclude` 增 `**/.cache`> | <为什么改> |
+
+> 注：保护目录的编辑器软保护（`files.readonlyInclude`）同样非强制、有局限（多根工作区对整目录根不生效），约束以 `02-跨目录约束.md` 为准。

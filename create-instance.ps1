@@ -1,5 +1,5 @@
 ﻿<#
-  create-instance.ps1 — 从模板仓创建新工作区实例（v1.0）
+  create-instance.ps1 — 从模板仓创建新工作区实例（v1.1）
 
   用法：
     & create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones]

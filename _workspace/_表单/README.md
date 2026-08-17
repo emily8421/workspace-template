@@ -1,4 +1,4 @@
-<!-- 模板 v1.0 | sync: manual | target: _workspace/_表单/README.md -->
+<!-- 模板 v1.1 | sync: manual | target: _workspace/_表单/README.md -->
 # _表单（可复用空表单库）
 
 > 模板提供、实例复制后填写。表单**去业务字段**，业务内容由实例填。

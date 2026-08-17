@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: <实例根>/AGENTS.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: <实例根>/AGENTS.md -->
 # AI Agent 入口（工作区根）
 
 从本工作区任意位置启动 AI 前，先读取并遵守：

@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.0 | sync: manual | target: <实例>/03-知识输入/AGENTS.md -->
+﻿<!-- 模板 v1.1 | sync: manual | target: <实例>/03-知识输入/AGENTS.md -->
 # AI Agent 入口（03-知识输入）
 
 本目录为**只读参考知识库**。进入后先读取并遵守：
