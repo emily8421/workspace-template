@@ -29,6 +29,13 @@ $dest = Join-Path $Parent $Name
 if (Test-Path -LiteralPath $dest) { throw "目标已存在: $dest" }
 if (-not (Test-Path -LiteralPath $From)) { throw "模板仓不存在: $From" }
 
+# 母本防呆：实例不得嵌套建在模板仓内部（模板仓是母本，不当工作区；见 使用手册.md「母本纪律」）
+$fromFull = (Get-Item -LiteralPath $From).FullName.TrimEnd('\')
+$destFull = [System.IO.Path]::GetFullPath($dest).TrimEnd('\')
+if ($destFull -like "$fromFull*") {
+  throw "实例不能建在模板仓内部: $destFull`n模板仓是母本，-Parent 请指向模板仓以外的目录。"
+}
+
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 # 模板仓自身文件不随骨架复制：隐藏/仓文件、根级门面与记录文档、维护目录整树
 $exclude = @('.git', '.gitignore', '.claude', '_模板维护', '模板说明.md', '使用手册.md', 'CHANGELOG.md')
