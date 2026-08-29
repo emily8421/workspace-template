@@ -5,7 +5,7 @@
     & create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones]
 
   行为：
-    1. 复制模板骨架到 <Parent>/<Name>（排除模板自身文件：.git、.gitignore、模板说明.md、CHANGELOG.md、sync-template.ps1、create-instance.ps1）
+    1. 复制模板骨架到 <Parent>/<Name>（排除模板自身文件：.git、.gitignore、.claude、模板说明.md、使用手册.md、CHANGELOG.md、sync-template.ps1、create-instance.ps1、模板优化建议-*.md）
     2. 生成 <Name>.code-workspace（含骨架目录，外部目录按实例自行添加）
     3. 提示按 _workspace/05-落地检查清单.md 落地
 
@@ -26,12 +26,13 @@ if (Test-Path -LiteralPath $dest) { throw "目标已存在: $dest" }
 if (-not (Test-Path -LiteralPath $From)) { throw "模板仓不存在: $From" }
 
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
-$exclude = @('.git', '.gitignore', '模板说明.md', 'CHANGELOG.md', 'sync-template.ps1', 'create-instance.ps1')
+$exclude = @('.git', '.gitignore', '.claude', '模板说明.md', '使用手册.md', 'CHANGELOG.md', 'sync-template.ps1', 'create-instance.ps1')
 if (-not $IncludeOptionalZones) {
   # 可选区默认不建（02-数据 / 03-知识输入）
   $exclude += @('02-数据', '03-知识输入')
 }
-Get-ChildItem -LiteralPath $From -Force | Where-Object { $_.Name -notin $exclude } | ForEach-Object {
+# 模板优化建议-*.md 为模板仓决策记录，不随骨架复制
+Get-ChildItem -LiteralPath $From -Force | Where-Object { $_.Name -notin $exclude -and $_.Name -notlike '模板优化建议-*.md' } | ForEach-Object {
   Copy-Item -LiteralPath $_.FullName -Destination $dest -Recurse -Force
 }
 
