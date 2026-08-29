@@ -1,16 +1,18 @@
 ﻿<#
-  sync-template.ps1 — 模板 → 实例 同步机制（v0.6，front-matter 驱动）
+  sync-template.ps1 — 模板 → 实例 同步机制（v1.2，front-matter 驱动）
+
+  位置：_模板维护\sync-template.ps1（模板仓自身脚本，不复制进实例）。
 
   用法：
-    & sync-template.ps1 -Instance <实例目录>                      # dry-run：只报告差异
-    & sync-template.ps1 -Instance <实例目录> -Apply                # 应用 sync:auto 文件（模板权威，覆盖实例）
-    & sync-template.ps1 -Instance <实例目录> -File <模板相对路径> -Apply   # 只处理单个文件
+    & _模板维护\sync-template.ps1 -Instance <实例目录>                      # dry-run：只报告差异
+    & _模板维护\sync-template.ps1 -Instance <实例目录> -Apply                # 应用 sync:auto 文件（模板权威，覆盖实例）
+    & _模板维护\sync-template.ps1 -Instance <实例目录> -File <模板相对路径> -Apply   # 只处理单个文件
 
   规则（由模板文件头部 front-matter 驱动）：
     <!-- 模板 vX.Y | sync: auto | target: <实例相对路径> -->   自动同步（可覆盖）
     <!-- 模板 vX.Y | sync: manual | target: ... -->            实例化文件，仅报告差异，需人工合并
     target 含 <占位符>（如 <实例根>/README.md）               无法解析，按 manual 处理
-  无 front-matter 的文件（模板自身文件）自动跳过。
+  无 front-matter 的文件（模板自身文件，含 _模板维护\）自动跳过。
 #>
 param(
   [Parameter(Mandatory = $true)][string]$Instance,
@@ -18,7 +20,8 @@ param(
   [string]$File
 )
 $ErrorActionPreference = 'Stop'
-$tplDir = $PSScriptRoot
+# 脚本在 _模板维护\ 子目录：模板仓根 = 脚本父目录
+$tplDir = Split-Path -Parent $PSScriptRoot
 if (-not (Test-Path -LiteralPath $Instance)) { throw "实例目录不存在: $Instance" }
 if (-not (Test-Path -LiteralPath $tplDir)) { throw "模板仓不存在: $tplDir" }
 

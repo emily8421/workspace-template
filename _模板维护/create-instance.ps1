@@ -1,11 +1,14 @@
 ﻿<#
-  create-instance.ps1 — 从模板仓创建新工作区实例（v1.1）
+  create-instance.ps1 — 从模板仓创建新工作区实例（v1.2）
+
+  位置：_模板维护\create-instance.ps1（模板仓自身脚本，不复制进实例）。
 
   用法：
-    & create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones]
+    & _模板维护\create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones]
 
   行为：
-    1. 复制模板骨架到 <Parent>/<Name>（排除模板自身文件：.git、.gitignore、.claude、模板说明.md、使用手册.md、CHANGELOG.md、sync-template.ps1、create-instance.ps1、模板优化建议-*.md）
+    1. 复制模板骨架到 <Parent>/<Name>（模板仓根扫描；排除模板自身文件：
+       .git、.gitignore、.claude、_模板维护/、模板说明.md、使用手册.md、CHANGELOG.md）
     2. 生成 <Name>.code-workspace（含骨架目录，外部目录按实例自行添加）
     3. 提示按 _workspace/05-落地检查清单.md 落地
 
@@ -19,20 +22,21 @@ param(
   [switch]$IncludeOptionalZones
 )
 $ErrorActionPreference = 'Stop'
-if (-not $From) { $From = $PSScriptRoot }
+# 脚本在 _模板维护\ 子目录：默认模板仓根 = 脚本父目录（显式 -From 可覆盖）
+if (-not $From) { $From = Split-Path -Parent $PSScriptRoot }
 if (-not $Parent) { $Parent = (Get-Location).Path }
 $dest = Join-Path $Parent $Name
 if (Test-Path -LiteralPath $dest) { throw "目标已存在: $dest" }
 if (-not (Test-Path -LiteralPath $From)) { throw "模板仓不存在: $From" }
 
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
-$exclude = @('.git', '.gitignore', '.claude', '模板说明.md', '使用手册.md', 'CHANGELOG.md', 'sync-template.ps1', 'create-instance.ps1')
+# 模板仓自身文件不随骨架复制：隐藏/仓文件、根级门面与记录文档、维护目录整树
+$exclude = @('.git', '.gitignore', '.claude', '_模板维护', '模板说明.md', '使用手册.md', 'CHANGELOG.md')
 if (-not $IncludeOptionalZones) {
   # 可选区默认不建（02-数据 / 03-知识输入）
   $exclude += @('02-数据', '03-知识输入')
 }
-# 模板优化建议-*.md 为模板仓决策记录，不随骨架复制
-Get-ChildItem -LiteralPath $From -Force | Where-Object { $_.Name -notin $exclude -and $_.Name -notlike '模板优化建议-*.md' } | ForEach-Object {
+Get-ChildItem -LiteralPath $From -Force | Where-Object { $_.Name -notin $exclude } | ForEach-Object {
   Copy-Item -LiteralPath $_.FullName -Destination $dest -Recurse -Force
 }
 
