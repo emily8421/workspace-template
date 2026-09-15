@@ -1,4 +1,4 @@
-<!-- 模板 v1.2 | sync: manual | target: <实例根>/README.md -->
+<!-- 模板 v1.3 | sync: manual | target: <实例根>/README.md -->
 # <工作区名> · 工作区总览
 
 <一句话：这个工作区装了什么、在推进什么。>
@@ -32,7 +32,7 @@
 - 文档写 `01-文档/`，脚本写 `04-工具/`；原始数据和参考资料按只读规则登记，不直接搬入。
 - 新会话（人或 AI）只看 `_workspace/_handoff/README.md` 的「当前主线 / 下一任务」，不按启动目录查找其他 `_handoff/README.md`。
 - 新增、移动或重命名目录后，同步更新 `_workspace/01-目录索引.md` 和相关引用。
-- 改 VS Code 挂载只改 `_workspace/07-VSCode工作区挂载登记.md` 的 json 块，再运行 `04-工具\sync-vscode-workspace.ps1 -DryRun` 预览，确认后去掉 `-DryRun` 执行。
+- 改 VS Code 挂载只改 `_workspace/07-VSCode工作区挂载登记.md` 的 json 块，再运行 `04-工具\03-工作区治理\sync-vscode-workspace.ps1 -DryRun` 预览，确认后去掉 `-DryRun` 执行。
 
 ## 硬约束
 

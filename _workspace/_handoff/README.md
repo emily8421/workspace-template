@@ -1,8 +1,9 @@
-﻿<!-- 模板 v1.1 | sync: manual | target: _workspace/_handoff/README.md -->
+﻿<!-- 模板 v1.3 | sync: manual | target: _workspace/_handoff/README.md -->
 # _handoff 索引
 <!-- handoff-index: canonical -->
 
-> **当前主线 / 下一任务**：<Markdown 链接到进行中续接文档；无则写「无」>（A4 主线程指针，见 `04-会话续接.md`）
+> **当前主线 / 下一任务**：无
+> 填写：进行中续接文档的 Markdown 链接（A4 主线程指针，见 `04-会话续接.md`）；无主线时保持「无」。
 
 | 日期 | 任务 | 目录 | 状态 | 路径 |
 |---|---|---|---|---|

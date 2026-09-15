@@ -1,4 +1,4 @@
-<!-- 模板 v1.1 | sync: manual | target: <实例>/_workspace/_参考示例/README.md -->
+<!-- 模板 v1.3 | sync: manual | target: <实例>/_workspace/_参考示例/README.md -->
 # _参考示例（实例参考，非规则）
 
 > 本区存放**实例业务产物示例**，仅供形态参考，**不是模板规则、不约束实例**。

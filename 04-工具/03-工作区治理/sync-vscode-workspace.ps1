@@ -5,8 +5,8 @@
 .DESCRIPTION
   读取 <实例根>\_workspace\ 下 *VSCode工作区挂载登记.md 的 json 挂载项，幂等地更新
   <实例根>\ 下 *.code-workspace 的 folders 段；settings 等其他顶层字段保持不动。
-  默认路径按 $PSScriptRoot 推导：脚本放在实例 04-工具\ 下即可直接运行；
-  登记表通配 *VSCode工作区挂载登记.md 兼容实例编号 06 与模板编号 07。
+  默认路径按 $PSScriptRoot 推导：脚本位于实例 04-工具\03-工作区治理\ 下即可直接运行；
+  登记表通配 *VSCode工作区挂载登记.md（实例与模板统一为编号 07；通配保留以防再漂移）。
   - 无变化时不写文件（保持现状与时间戳）。
   - -DryRun 只预览将发生的变更，不写文件。
   - folders 为覆盖式：以登记表为唯一真相，手改 .code-workspace 的 folders 会被覆盖。
@@ -34,8 +34,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# --- 0. 推导默认路径：脚本位于 <实例根>\04-工具\ 下 ---
-$InstanceRoot = Split-Path $PSScriptRoot -Parent
+# --- 0. 推导默认路径：脚本位于 <实例根>\04-工具\03-工作区治理\ 下 ---
+$ToolRoot = Split-Path $PSScriptRoot -Parent
+$InstanceRoot = Split-Path $ToolRoot -Parent
 if (-not $RegisterFile) {
     $regFiles = @(Get-ChildItem -LiteralPath (Join-Path $InstanceRoot '_workspace') -Filter '*VSCode工作区挂载登记.md' -File -ErrorAction SilentlyContinue)
     if ($regFiles.Count -lt 1) { throw "未找到登记表：$InstanceRoot\_workspace\*VSCode工作区挂载登记.md" }

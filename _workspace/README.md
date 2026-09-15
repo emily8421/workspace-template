@@ -1,4 +1,4 @@
-﻿<!-- 模板 v1.1 | sync: manual | target: _workspace/README.md -->
+﻿<!-- 模板 v1.3 | sync: manual | target: _workspace/README.md -->
 # _workspace（工作区治理区）
 
 承载工作区的全局规则、目录索引、git 机制、通用文档管理原则与会话续接。

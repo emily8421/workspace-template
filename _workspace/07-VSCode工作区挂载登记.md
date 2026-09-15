@@ -1,7 +1,7 @@
-﻿<!-- 模板 v1.1 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
+﻿<!-- 模板 v1.3 | sync: manual | target: _workspace/07-VSCode工作区挂载登记.md -->
 # VS Code 工作区挂载登记（模板）
 
-- 性质：`.code-workspace` 挂载项的**唯一真相**。由 `04-工具\sync-vscode-workspace.ps1` 读取并同步到 `.code-workspace` 的 `folders` 段。
+- 性质：`.code-workspace` 挂载项的**唯一真相**。由 `04-工具\03-工作区治理\sync-vscode-workspace.ps1` 读取并同步到 `.code-workspace` 的 `folders` 段。
 - 变更方式：**只改本文件的 json 块**，再运行同步脚本；不要手改 `.code-workspace` 的 `folders`（会被下次同步覆盖）。`settings` 等其他字段脚本不动，可自行维护。
 - path 基准：相对 `.code-workspace` 所在目录（实例根）；绝对路径原样写（如 `E:/...`）。
 - 顺序：json 数组顺序 = VS Code 侧边栏显示顺序。
@@ -35,10 +35,10 @@
 
 ```powershell
 # 预览将发生的变更（不写文件）
-& .\04-工具\sync-vscode-workspace.ps1 -DryRun
+& .\04-工具\03-工作区治理\sync-vscode-workspace.ps1 -DryRun
 
 # 执行同步
-& .\04-工具\sync-vscode-workspace.ps1
+& .\04-工具\03-工作区治理\sync-vscode-workspace.ps1
 ```
 
 > 同步后 VS Code 会提示「工作区已更改，重新加载」。无变化时脚本不写文件。
