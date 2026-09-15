@@ -6,5 +6,5 @@
 1. `<工作区根>\_workspace\00-总入口.md`（全局规则）
 2. 本目录 README.md 与子目录自有规则（如有）
 
-新开会话先查 `<工作区根>\_workspace\_handoff\README.md`。
+新开会话先查 `<工作区根>\_workspace\_handoff\README.md`（唯一续接索引），再跟随其顶部主线程指针。
 续接文档写入 `<工作区根>\_workspace\_handoff\01-文档\`。

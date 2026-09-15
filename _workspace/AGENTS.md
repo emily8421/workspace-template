@@ -7,7 +7,7 @@
 2. `01-目录索引.md`（工作区地图）
 3. 当前所在子目录的 `AGENTS.md` / `README.md` 与自有规则（如有）
 
-新开会话先查 `_handoff/README.md`（续接索引）。
+新开会话先查本目录的 `_handoff/README.md`（即 `<实例根>\_workspace\_handoff\README.md`，唯一续接索引），再跟随其顶部主线程指针。
 续接文档写入 `_handoff/<目录名>/`。
 
 ## 为什么本文件存在（AI 引导机制）

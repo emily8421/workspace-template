@@ -11,7 +11,7 @@
 |---|---|
 | 想了解本工作区的结构 | 本文件，再 `_workspace/01-目录索引.md` |
 | 新会话的 AI（Codex / Claude Code） | `AGENTS.md` / `CLAUDE.md` → `_workspace/00-总入口.md` |
-| 接手进行中的任务 | `_workspace/_handoff/README.md`（顶部「当前主线 / 下一任务」） |
+| 接手进行中的任务 | `<实例根>/_workspace/_handoff/README.md`（唯一索引的顶部「当前主线 / 下一任务」） |
 | 刚建好工作区、要做首次配置 | `_workspace/05-落地检查清单.md`（按阶段 1-4 逐项打勾） |
 | 想再建一个工作区 / 不熟悉本套模板 | 模板仓 `模板说明.md`（快速概览）与 `使用手册.md`（新手教程） |
 
@@ -30,7 +30,7 @@
 ## 日常工作速记
 
 - 文档写 `01-文档/`，脚本写 `04-工具/`；原始数据和参考资料按只读规则登记，不直接搬入。
-- 新会话（人或 AI）先看 `_workspace/_handoff/README.md` 的「当前主线 / 下一任务」。
+- 新会话（人或 AI）只看 `_workspace/_handoff/README.md` 的「当前主线 / 下一任务」，不按启动目录查找其他 `_handoff/README.md`。
 - 新增、移动或重命名目录后，同步更新 `_workspace/01-目录索引.md` 和相关引用。
 - 改 VS Code 挂载只改 `_workspace/07-VSCode工作区挂载登记.md` 的 json 块，再运行 `04-工具\sync-vscode-workspace.ps1 -DryRun` 预览，确认后去掉 `-DryRun` 执行。
 
