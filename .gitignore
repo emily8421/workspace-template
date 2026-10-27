@@ -3,7 +3,10 @@
 .claude/
 .cursor/
 .obsidian/
-.trae/
+.trae/*
+!.trae/rules/
+.trae/rules/*
+!.trae/rules/00-工作区入口.md
 .history/
 .idea/
 .vscode/

@@ -1,16 +1,16 @@
-<!-- 模板 v1.3 | sync: manual | target: <实例根>/README.md -->
+<!-- 模板 v1.4 | sync: manual | target: <实例根>/README.md -->
 # <工作区名> · 工作区总览
 
 <一句话：这个工作区装了什么、在推进什么。>
 
-本文件来自工作区模板；模板的用法和新手教程见模板仓的 `模板说明.md` 与 `使用手册.md`。AI 入口见 `AGENTS.md`（Codex）和 `CLAUDE.md`（Claude Code），两者都指向 `_workspace/00-总入口.md`。
+本文件来自工作区模板；模板的用法和新手教程见模板仓的 `模板说明.md` 与 `使用手册.md`。AI 入口见 `AGENTS.md`（Codex / Trae）和 `CLAUDE.md`（Claude Code），两者都指向 `_workspace/00-总入口.md`；Trae 另有 `.trae/rules/00-工作区入口.md` 委托兜底。
 
 ## 从哪里开始
 
 | 你的情况 | 先看 |
 |---|---|
 | 想了解本工作区的结构 | 本文件，再 `_workspace/01-目录索引.md` |
-| 新会话的 AI（Codex / Claude Code） | `AGENTS.md` / `CLAUDE.md` → `_workspace/00-总入口.md` |
+| 新会话的 AI（Codex / Trae / Claude Code） | `AGENTS.md` / `CLAUDE.md` → `_workspace/00-总入口.md` |
 | 接手进行中的任务 | `<实例根>/_workspace/_handoff/README.md`（唯一索引的顶部「当前主线 / 下一任务」） |
 | 刚建好工作区、要做首次配置 | `_workspace/05-落地检查清单.md`（按阶段 1-4 逐项打勾） |
 | 想再建一个工作区 / 不熟悉本套模板 | 模板仓 `模板说明.md`（快速概览）与 `使用手册.md`（新手教程） |

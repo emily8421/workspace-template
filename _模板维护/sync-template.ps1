@@ -1,5 +1,5 @@
 ﻿<#
-  sync-template.ps1 — 模板 → 实例 同步机制（v1.2，front-matter 驱动）
+  sync-template.ps1 — 模板 → 实例 同步机制（v1.3，front-matter 驱动）
 
   位置：_模板维护\sync-template.ps1（模板仓自身脚本，不复制进实例）。
 
@@ -8,7 +8,7 @@
     & _模板维护\sync-template.ps1 -Instance <实例目录> -Apply                # 应用 sync:auto 文件（模板权威，覆盖实例）
     & _模板维护\sync-template.ps1 -Instance <实例目录> -File <模板相对路径> -Apply   # 只处理单个文件
 
-  规则（由模板文件头部 front-matter 驱动）：
+  规则（由模板文件前 4 行内的 front-matter 标记驱动；Trae 规则文件 front-matter 占第 1 行，标记随其后）：
     <!-- 模板 vX.Y | sync: auto | target: <实例相对路径> -->   自动同步（可覆盖）
     <!-- 模板 vX.Y | sync: manual | target: ... -->            实例化文件，仅报告差异，需人工合并
     target 含 <占位符>（如 <实例根>/README.md）               无法解析，按 manual 处理
@@ -34,8 +34,12 @@ $skipped = 0
 foreach ($f in $files) {
   $rel = $f.FullName.Substring($tplDir.Length + 1)
   if ($File -and $rel -ne $File) { $skipped++; continue }
-  $head = Get-Content -LiteralPath $f.FullName -TotalCount 1 -Encoding UTF8
-  $m = [regex]::Match($head, '模板 v[\d.]+ \| sync: (\w+) \| target: (.+?) *(?:-->)?\s*$')
+  # 标记允许在文件前 5 行内：Trae 规则文件要求 --- front-matter 置于第 1 行，模板标记随其后（v1.3）
+  $m = $null
+  foreach ($line in (Get-Content -LiteralPath $f.FullName -TotalCount 5 -Encoding UTF8)) {
+    $m = [regex]::Match($line, '模板 v[\d.]+ \| sync: (\w+) \| target: (.+?) *(?:-->)?\s*$')
+    if ($m.Success) { break }
+  }
   if (-not $m.Success) { continue }  # 模板自身文件等，跳过
   $syncMode = $m.Groups[1].Value
   $target = $m.Groups[2].Value.Trim()

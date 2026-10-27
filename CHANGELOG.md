@@ -1,4 +1,13 @@
-﻿## v1.3（2026-09-15）治理规则与规范层回流（依据 `模板优化建议-20260915.md`，10 项中 9 项落地＋断链修复；含 2026-09-01 canonical 批补提交）
+﻿## v1.4（2026-10-27）Trae 入口支持（用户提出：实例还会用 Trae）
+
+> 考证：Trae 原生识别根目录 `AGENTS.md`（与 Codex 同链路，含子目录规则）；自有规则机制 `.trae/rules/*.md` 要求 front-matter（`--- alwaysApply ---` 等）置于文件第 1 行，无 front-matter 退化为手动触发。
+
+- **新增 `.trae/rules/00-工作区入口.md`**（sync: auto）：alwaysApply 委托文件，链回 `_workspace/00-总入口.md` 与 `_handoff/README.md`，作 AGENTS.md 识别差异的兜底；`create-instance.ps1` 无需改动（`.trae` 不在排除清单，随骨架复制）。
+- **`sync-template.ps1` v1.3**：sync 标记匹配从「仅第 1 行」放宽为「前 4 行内」——Trae front-matter 占第 1 行，模板标记移至正文首行；其余文件行为不变。
+- **文档层**：`00-总入口.md` AI 引导机制补 Trae 条目并改节标题；根 `AGENTS.md` 引导边界、根 `README.md` 两处、`使用手册.md` 术语表、`01-目录索引.md` 注意行、`模板说明.md`（版本号 v1.4 + 结构表 + 入口解释 + sync 说明）共 7 处补 Trae 说明。
+- **`.gitignore`**：`.trae/` 整目录忽略改为「忽略 `.trae/*`，仅版本化 `.trae/rules/00-工作区入口.md`」——委托文件是模板管理文件而非编辑器状态；实例自建的其他 .trae 规则文件仍不入模板仓。
+
+
 
 > 来源：实例 `miiot_plugin_develop_system` 覆盖期 2026-08-29～09-15 的回流扫描。#10「校验/渲染脚本内置」经用户裁定翻案（原 08-15 裁定「实例自建」，2.5 周实践后内置）；`protected-paths.json` 机读镜像随之内置占位。
 
