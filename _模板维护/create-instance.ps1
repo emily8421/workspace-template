@@ -1,16 +1,18 @@
 ﻿<#
-  create-instance.ps1 — 从模板仓创建新工作区实例（v1.2）
+  create-instance.ps1 — 从模板仓创建新工作区实例（v1.3）
 
   位置：_模板维护\create-instance.ps1（模板仓自身脚本，不复制进实例）。
 
   用法：
-    & _模板维护\create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones]
+    & _模板维护\create-instance.ps1 -Name <实例名> [-Parent <父目录>] [-From <模板仓路径>] [-IncludeOptionalZones] [-SyncMode follow|independent]
 
   行为：
     1. 复制模板骨架到 <Parent>/<Name>（模板仓根扫描；排除模板自身文件：
        .git、.gitignore、.claude、_模板维护/、模板说明.md、使用手册.md、CHANGELOG.md）
     2. 生成 <Name>.code-workspace（含骨架目录，外部目录按实例自行添加）
-    3. 提示按 _workspace/05-落地检查清单.md 落地
+    3. 按写入实例 _workspace/10-模板同步.md 机读块（默认 follow；
+       independent = 独立管理，同步脚本将拒绝执行，恢复同步需用户主动改回）
+    4. 提示按 _workspace/05-落地检查清单.md 落地
 
   默认只建核心骨架 _workspace + 01-文档 + 04-工具；02-数据/03-知识输入为可选区，
   加 -IncludeOptionalZones 才一并创建并挂载。
@@ -19,7 +21,8 @@ param(
   [Parameter(Mandatory = $true)][string]$Name,
   [string]$Parent,
   [string]$From,
-  [switch]$IncludeOptionalZones
+  [switch]$IncludeOptionalZones,
+  [ValidateSet('follow', 'independent')][string]$SyncMode = 'follow'
 )
 $ErrorActionPreference = 'Stop'
 # 脚本在 _模板维护\ 子目录：默认模板仓根 = 脚本父目录（显式 -From 可覆盖）
@@ -58,6 +61,16 @@ if ($IncludeOptionalZones) {
   }
 }
 
+# 同步模式写入实例 _workspace/10-模板同步.md 机读块（v1.3：默认 follow；independent 需用户主动改回才恢复同步）
+if ($SyncMode -ne 'follow') {
+  $syncFile = Join-Path $dest '_workspace\10-模板同步.md'
+  if (Test-Path -LiteralPath $syncFile) {
+    $content = [System.IO.File]::ReadAllText($syncFile)
+    $content = $content -replace '"follow"', ('"' + $SyncMode + '"')
+    [System.IO.File]::WriteAllText($syncFile, $content, (New-Object System.Text.UTF8Encoding($false)))
+  }
+}
+
 # 生成 <Name>.code-workspace
 $dirs = @('_workspace', '01-文档', '04-工具')
 if ($IncludeOptionalZones) {
@@ -80,4 +93,5 @@ $folders
 Remove-Item -LiteralPath (Join-Path $dest '模板-工作区.code-workspace') -Force
 
 "实例已创建: $dest"
+"同步模式: $SyncMode（$dest\_workspace\10-模板同步.md；independent 模式下 sync-template.ps1 将拒绝同步，恢复需主动改回 follow）"
 "下一步：按 $dest\_workspace\05-落地检查清单.md 走阶段 1-4（git init、填目录索引/跨目录约束、入口链验证、首提交）。"

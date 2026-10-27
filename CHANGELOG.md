@@ -1,4 +1,18 @@
-﻿## v1.4（2026-10-27）Trae 入口支持（用户提出：实例还会用 Trae）
+﻿## v1.5.0（2026-10-27）同步治理底座：同步模式开关 + 留痕 + 大白话 changelog + 回流收件箱（用户提出：模板原设计「分发后各自修改、不做统一同步」，现需补同步治理以分发新模板方法；参考 ai-project-template 同类机制裁剪）
+
+> 版本号升三段式 `vMAJOR.MINOR.PATCH`，单一审计入口 = 根目录 `VERSION`；版本是发布边界，不是提案数量边界。
+
+- **`_workspace/10-模板同步.md`**（sync: manual，新）：模板方法分发唯一事实源——同步模式定义（`follow` 默认 / `independent` 独立管理）、机读 json 块（sync-template 门禁数据源；切换须主动修改，`independent → follow` 属重新接入须用户确认）、同步流程五步（pull 母本 → dry-run → -Apply → 人工合并 → 回流 triage）、回流提案约定、auto 文件只读边界。
+- **`create-instance.ps1` v1.3**：新增 `-SyncMode follow|independent`（默认 follow），非 follow 时改写实例 10 号机读块（`"follow"` 两处：sync_mode 值 + history 首条）；输出同步模式提示。
+- **`sync-template.ps1` v1.4**：①同步模式门禁——实例机读块 `sync_mode=independent` 拒绝执行（缺文件/块按 follow 兼容旧实例，输出提示）；②manual 文件内容比对——status 由「需人工合并」细化为 `SAME / DIFF / 待新增 / 无法解析`，DIFF 才进人工合并；③同步留痕——`-Apply` 向实例 `_workspace/_同步记录.md` 追加一行（日期 / 模板 VERSION / auto 已同步清单 / manual DIFF 清单）；④`-Apply` 结束提示改为指向 10 号与 CHANGELOG-PLAIN。
+- **`CHANGELOG-PLAIN.md`**（sync: auto，target 实例根，新）：模板更新大白话版，随同步进实例；人读「这版改了啥、对我的实例要做什么」，权威以模板仓 `VERSION`/`CHANGELOG.md` 为准。首版收录 v1.5.0 升级指引（已有实例需补 4 文件 + 跑一次 sync）。
+- **`VERSION`**（新，模板仓根；随骨架复制）：`v1.5.0`，同步留痕与外部引用的单一版本出处。
+- **实例侧新骨架**：`_workspace/_回流提案.md`（实例→模板仓提案收件箱：待处理格式「发现场景/建议内容/证据/范围」+ 已回流登记；无 sync 标记，实例自有）、`_workspace/_同步记录.md`（留痕表骨架，脚本自动追加；无 sync 标记）。回流事件驱动化：实例内发现即写、模板维护会话开头收取 triage，替代维护者定期扫描（扫描降为兜底）；独立模式实例同样鼓励回流。
+- **6 个 sync: auto 文件**加 Sync notice 行（第 2 行）：本文件模板权威、实例内不得直接修改、通用改进走 `_workspace/_回流提案.md`——堵「实例误改 auto 文件」口子（此前仅有「可安全覆盖」描述，无禁止性规则）。
+- **`05-落地检查清单.md`**（v1.5）：阶段 1 新增「确认 10 号机读块同步模式 + 三个新文件存在」检查项；**`00-总入口.md`**（v1.5）：读取顺序补第 11 条 10 号；**`模板说明.md`**（v1.5.0）：版本三段式、结构表补 5 行、一句话工作流补模式/留痕/回流、同步节补门禁与 DIFF 口径、auto 清单补 CHANGELOG-PLAIN；**`使用手册.md`**：4.1 补 `-SyncMode` 与独立模式语义（含「主动改回」设计意图）、§7 重写同步节（门禁/留痕/PLAIN 阅读/回流）、术语表补「同步模式」行。
+- 明确不引入（规模判断，实例量级 1-2 个）：机读同步清单 `template-sync.json`（front-matter 运行时扫描已够）、派生侧边界自检脚本、多实例登记表（registry）；待实例 ≥3 或出现真实误改事故再评估（P2 备忘）。
+
+## v1.4（2026-10-27）Trae 入口支持（用户提出：实例还会用 Trae）
 
 > 考证：Trae 原生识别根目录 `AGENTS.md`（与 Codex 同链路，含子目录规则）；自有规则机制 `.trae/rules/*.md` 要求 front-matter（`--- alwaysApply ---` 等）置于文件第 1 行，无 front-matter 退化为手动触发。
 
@@ -7,7 +21,7 @@
 - **文档层**：`00-总入口.md` AI 引导机制补 Trae 条目并改节标题；根 `AGENTS.md` 引导边界、根 `README.md` 两处、`使用手册.md` 术语表、`01-目录索引.md` 注意行、`模板说明.md`（版本号 v1.4 + 结构表 + 入口解释 + sync 说明）共 7 处补 Trae 说明。
 - **`.gitignore`**：`.trae/` 整目录忽略改为「忽略 `.trae/*`，仅版本化 `.trae/rules/00-工作区入口.md`」——委托文件是模板管理文件而非编辑器状态；实例自建的其他 .trae 规则文件仍不入模板仓。
 
-
+## v1.3（2026-09-15）治理规则与规范层回流（依据 `模板优化建议-20260915.md`，10 项中 9 项落地＋断链修复；含 2026-09-01 canonical 批补提交）
 
 > 来源：实例 `miiot_plugin_develop_system` 覆盖期 2026-08-29～09-15 的回流扫描。#10「校验/渲染脚本内置」经用户裁定翻案（原 08-15 裁定「实例自建」，2.5 周实践后内置）；`protected-paths.json` 机读镜像随之内置占位。
 
