@@ -1,5 +1,5 @@
 ﻿<#
-  sync-template.ps1 — 模板 → 实例 同步机制（v1.4，front-matter 驱动）
+  sync-template.ps1 — 模板 → 实例 同步机制（v1.5，front-matter 驱动）
 
   位置：_模板维护\sync-template.ps1（模板仓自身脚本，不复制进实例）。
 
@@ -13,6 +13,8 @@
     （重新接入需用户确认后主动修改该机读块为 follow；缺文件/块按 follow 兼容旧实例）
     manual 文件内容比对——status 从「需人工合并」细化为 SAME / DIFF / 待新增 / 无法解析
     同步留痕——-Apply 时向实例 _workspace\_同步记录.md 自动追加一行（日期/模板 VERSION/auto 已同步/manual DIFF）
+  v1.5 调整：门禁两级化——dry-run 任何模式可跑（独立模式下作为切回前盘点工具，输出提示）；
+    仅 -Apply 需 follow 模式。auto 组 DIFF 即「实例改动过方法论文件」信号，裁决流程见实例 10-模板同步.md。
 
   规则（由模板文件前 4 行内的 front-matter 标记驱动；Trae 规则文件 front-matter 占第 1 行，标记随其后）：
     <!-- 模板 vX.Y | sync: auto | target: <实例相对路径> -->   自动同步（可覆盖）
@@ -42,7 +44,10 @@ if (Test-Path -LiteralPath $modeFile) {
   }
 }
 if ($instanceMode -eq 'independent') {
-  throw "实例为独立管理模式（_workspace/10-模板同步.md 机读块 sync_mode=independent），同步已拒绝。`n如需重新接入模板方法分发：请用户确认后，主动将该文件机读块的 sync_mode 改为 follow，并按 10-模板同步.md 同步流程执行。"
+  if ($Apply) {
+    throw "实例为独立管理模式（_workspace/10-模板同步.md 机读块 sync_mode=independent），-Apply 已拒绝。`n如需重新接入模板方法分发：先跑 dry-run 盘点独立期间的改动并按「切回四步」安顿（见实例 10-模板同步.md），再由用户确认后将机读块 sync_mode 改为 follow。"
+  }
+  Write-Host '提示: 实例为独立管理模式（independent），本次 dry-run 仅供切回前盘点/查看，-Apply 将被拒绝；切回流程见实例 _workspace/10-模板同步.md。'
 }
 if (-not $instanceMode) { Write-Host '提示: 实例缺 _workspace/10-模板同步.md 或机读块不可解析，按 follow 模式处理（旧实例兼容）。' }
 
