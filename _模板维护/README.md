@@ -10,6 +10,7 @@
 | `create-instance.ps1` | 从模板仓创建新工作区实例（默认核心骨架，`-IncludeOptionalZones` 加可选区） |
 | `sync-template.ps1` | 模板 → 实例同步（dry-run / `-Apply`，front-matter 驱动） |
 | `提案/` | 历次「模板优化建议-YYYYMMDD.md」归档（决策记录，落地状态见各文件头部标注与 CHANGELOG） |
+| `团队通知-*.md` | 面向成员的机制上线/变更通知（一次性沟通稿，原文转发用；发送后留档不删） |
 
 ## 约定
 
